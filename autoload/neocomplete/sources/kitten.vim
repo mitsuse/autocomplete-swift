@@ -20,7 +20,7 @@ let s:source = {
 function! s:source.gather_candidates(context)
     let l:result = s:sourcekitten_complete(
     \    a:context.input,
-    \    a:context.complete_pos + len(a:context.complete_pos),
+    \    a:context.complete_pos + len(a:context.complete_str),
     \)
 
     let l:candidates = []
