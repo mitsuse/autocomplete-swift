@@ -11,7 +11,7 @@ let s:source = {
 \   },
 \   'mark': '[kitten]',
 \   'min_pattern_length': 1,
-\   'max_candidates': 10,
+\   'max_candidates': 30,
 \   'keyword_patterns': {
 \       'swift': '\(\(:\|,\|->\)\s\|\.\)',
 \   }
