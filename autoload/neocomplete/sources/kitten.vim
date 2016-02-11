@@ -18,9 +18,18 @@ function! s:source.gather_candidates(context)
     let l:text = getline('.')
     let l:offset = col('.')
 
-    let l:result = sourcekitten_complete(l:text, l:offset)
+    let l:result = s:sourcekitten_complete(l:text, l:offset)
 
-    return []
+    let l:candidates = []
+
+    for l:r in l:result
+        let l:c = {
+        \   'word': l:r.sourcetext,
+        \}
+        call add(candidates, l:c)
+    endfor
+
+    return l:candidates
 endfunction
 
 function! neocomplete#sources#kitten#define()
