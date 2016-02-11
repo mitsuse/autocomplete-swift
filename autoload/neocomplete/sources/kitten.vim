@@ -12,19 +12,22 @@ let s:source = {
 \   'mark': '[kitten]',
 \   'min_pattern_length': 1,
 \   'max_candidates': 10,
+\   'keyword_patterns': {
+\       'swift': '\(\(:\|,\|->\)\s\|\.\)',
+\   }
 \ }
 
 function! s:source.gather_candidates(context)
-    let l:text = getline('.')
-    let l:offset = col('.')
-
-    let l:result = s:sourcekitten_complete(l:text, l:offset)
+    let l:result = s:sourcekitten_complete(
+    \    a:context.input,
+    \    a:context.complete_pos + len(a:context.complete_pos),
+    \)
 
     let l:candidates = []
 
     for l:r in l:result
         let l:c = {
-        \   'word': l:r.sourcetext,
+        \   'word': a:context.complete_str . l:r.sourcetext,
         \   'abbr': l:r.name,
         \}
         call add(candidates, l:c)
