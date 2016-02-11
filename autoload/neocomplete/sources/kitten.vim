@@ -29,7 +29,7 @@ function! s:source.gather_candidates(context)
 
     for l:r in l:result
         let l:c = {
-        \   'word': a:context.complete_str . l:r.sourcetext,
+        \   'word': a:context.complete_str . substitute(l:r.sourcetext, '<[^>]*>', '', 'g'),
         \   'abbr': l:r.name,
         \}
         call add(candidates, l:c)
