@@ -25,6 +25,7 @@ function! s:source.gather_candidates(context)
     for l:r in l:result
         let l:c = {
         \   'word': l:r.sourcetext,
+        \   'abbr': l:r.name,
         \}
         call add(candidates, l:c)
     endfor
