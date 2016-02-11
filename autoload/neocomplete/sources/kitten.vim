@@ -18,10 +18,12 @@ let s:source = {
 \ }
 
 function! s:source.gather_candidates(context)
-    let l:result = s:sourcekitten_complete(
-    \    a:context.input,
-    \    a:context.complete_pos + len(a:context.complete_str),
-    \)
+    let l:file = join(getline(0, line('.') - 1), ' ')
+    let l:offset = len(l:file) + col('.') + len(a:context.complete_str)
+
+    let l:file = join([l:file] + getline(line('.'), '$'), ' ')
+
+    let l:result = s:sourcekitten_complete(l:file, l:offset)
 
     let l:candidates = []
 
