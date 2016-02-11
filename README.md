@@ -2,7 +2,7 @@
 
 [![License][license-badge]][license]
 
-A neocomplete source for [SourceKitten][github-sourcekitten].
+A neocomplete source of [SourceKitten][github-sourcekitten] for Swift.
 
 
 ## Requirements
