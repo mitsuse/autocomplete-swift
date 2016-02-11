@@ -15,5 +15,5 @@ function! s:source.gather_candidates(context)
 endfunction
 
 function! neocomplete#sources#kitten#define()
-    return s:source
+    return executable('sourcekitten') ? s:source : {}
 endfunction
