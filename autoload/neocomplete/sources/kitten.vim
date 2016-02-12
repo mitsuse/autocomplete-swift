@@ -19,9 +19,13 @@ let s:source = {
 
 function! s:source.gather_candidates(context)
     let l:file = join(getline(0, line('.') - 1), "\n")
-    let l:offset = len(l:file) + col('.')
+    let l:offset = len(l:file) + col('.') - 1
 
-    let l:file = join([l:file] + getline(line('.'), '$'), "\n")
+    if len(l:file) == 0
+        let l:file = join(getline(line('.'), '$'), "\n")
+    else
+        let l:file = join([l:file] + getline(line('.'), '$'), "\n")
+    endif
 
     let l:result = s:sourcekitten_complete(l:file, l:offset)
 
