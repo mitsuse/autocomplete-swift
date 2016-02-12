@@ -6,7 +6,7 @@ let s:Json = s:Vital.import('Web.JSON')
 let s:source = {
 \   'name': 'kitten',
 \   'kind': 'keyword',
-\   'filetype': {
+\   'filetypes': {
 \       'swift': 1,
 \   },
 \   'mark': '[kitten]',
