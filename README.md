@@ -4,6 +4,7 @@
 
 A neocomplete source of [SourceKitten][github-sourcekitten] for Swift.
 
+![kitten-gif](/kitten.gif)
 
 ## Requirements
 
