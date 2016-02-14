@@ -10,11 +10,12 @@ let s:source = {
 \       'swift': 1,
 \   },
 \   'mark': '[kitten]',
-\   'min_pattern_length': 1,
+\   'min_pattern_length': 4,
 \   'max_candidates': 30,
 \   'keyword_patterns': {
-\       'swift': '\.\w*',
+\       'swift': '\(\.\w*\|\h\w*\)',
 \   },
+\   'input_pattern': '\(\.\|\(,\|:\|->\)\s*\)\w*',
 \ }
 
 function! s:source.gather_candidates(context)
