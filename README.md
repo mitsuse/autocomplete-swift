@@ -25,8 +25,8 @@ Frameworks/SDKs are not supported currently.
 
 ## TODO
 
-- Add support for framework/SDK
-- Make placeholders available
+- Add support for framework/SDK.
+- Make placeholders available.
 
 
 ## License
