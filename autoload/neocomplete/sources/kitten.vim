@@ -13,28 +13,22 @@ let s:source = {
 \   'min_pattern_length': 1,
 \   'max_candidates': 30,
 \   'keyword_patterns': {
-\       'swift': '\(\(:\|,\|->\)\s\|\.\)',
-\   }
+\       'swift': '\.\w*',
+\   },
 \ }
 
 function! s:source.gather_candidates(context)
-    let l:file = join(getline(0, line('.') - 1), "\n")
-    let l:offset = len(l:file) + col('.') - 1
-
-    if len(l:file) == 0
-        let l:file = join(getline(line('.'), '$'), "\n")
-    else
-        let l:file = join([l:file] + getline(line('.'), '$'), "\n")
-    endif
-
-    let l:result = s:sourcekitten_complete(l:file, l:offset)
+    let l:result = s:get_text_with_offset(a:context, line('.'))
+    let l:sourcekit_candidates = s:sourcekitten_complete(
+    \   l:result.text,
+    \   l:result.offset,
+    \)
 
     let l:candidates = []
-
-    for l:r in l:result
+    for l:s in l:sourcekit_candidates
         let l:c = {
-        \   'word': a:context.complete_str . substitute(l:r.sourcetext, '<#T##.*#>', '', 'g'),
-        \   'abbr': l:r.name,
+        \   'word': substitute(l:s.sourcetext, '<#T##.*#>', '', 'g'),
+        \   'abbr': l:s.name,
         \}
         call add(candidates, l:c)
     endfor
@@ -48,6 +42,15 @@ endfunction
 
 function! s:quote(string)
     return '"' . escape(a:string, '"') . '"'
+endfunction
+
+function! s:get_text_with_offset(context, row)
+    let l:text = join(getline(0, a:row - 1), "\n") . "\n"
+    let l:result = {
+    \   'text': l:text . join(getline(a:row, '$'), "\n"),
+    \   'offset': len(l:text) + a:context.complete_pos,
+    \}
+    return l:result
 endfunction
 
 function! s:sourcekitten_complete(text, offset)
