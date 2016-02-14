@@ -27,7 +27,7 @@ function! s:source.gather_candidates(context)
     let l:candidates = []
     for l:s in l:sourcekit_candidates
         let l:c = {
-        \   'word': substitute(l:s.sourcetext, '<#T##.*#>', '', 'g'),
+        \   'word': substitute(l:s.sourcetext, '(.*)', '', 'g'),
         \   'abbr': l:s.name,
         \}
         call add(candidates, l:c)
