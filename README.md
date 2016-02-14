@@ -25,6 +25,7 @@ Frameworks/SDKs are not supported currently.
 
 ## TODO
 
+- Display more information of candidate (For example, the kind of candidate etc).
 - Add support for framework/SDK.
 - Make placeholders available.
 
