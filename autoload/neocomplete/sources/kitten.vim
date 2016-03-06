@@ -28,7 +28,7 @@ function! s:source.gather_candidates(context)
     let l:candidates = []
     for l:s in l:sourcekit_candidates
         let l:c = {
-        \   'word': substitute(l:s.sourcetext, '(.*)', '', 'g'),
+        \   'word': s:convert_placeholder(l:s.sourcetext),
         \   'abbr': l:s.name,
         \}
         call add(candidates, l:c)
@@ -69,4 +69,21 @@ function! s:sourcekitten_complete(text, offset)
     \)
 
     return s:Json.decode(l:result)
+endfunction
+
+function! s:convert_placeholder(text)
+    let l:text = a:text
+    let l:pattern = '<#\%(T##\)\?\%(.\{-}##\)\?\(.\{-}\)#>'
+    let l:count = 0
+
+    while 1
+        let l:count += 1
+        if match(l:text, l:pattern) == -1
+            break
+        endif
+
+        let l:text = substitute(l:text, l:pattern, '<`' . l:count . ':\1`>', '')
+    endwhile
+
+    return l:text
 endfunction
