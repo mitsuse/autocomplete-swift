@@ -5,11 +5,12 @@
 
 A neocomplete source of [SourceKitten][github-sourcekitten] for Swift.
 
-![kitten-gif](/kitten.gif)
+![kitten-gif](/_images/kitten.gif)
 
 ## Requirements
 
 - [neocomplete][github-neocomplete]
+- [neosnippet][github-neosnippet]
 - [SourceKitten][github-sourcekitten]
 
 
@@ -19,16 +20,23 @@ A neocomplete source of [SourceKitten][github-sourcekitten] for Swift.
 - Type/Instance member
 - Function/method parameter
 - Top-level function/constant/variable
+- Jump to and edit placeholders by using [neosnippet][github-neosnippet].
 
 This plugin provides completion in single file.
 Frameworks/SDKs are not supported currently.
+
+
+## Placeholder
+
+This plugin supports for jumping to and editing placeholders ([neosnippet][github-neosnippet] is required).
+
+![placeholder-gif](/_images/placeholder.gif)
 
 
 ## TODO
 
 - Display more information of candidate (For example, the kind of candidate etc).
 - Add support for framework/SDK.
-- Make placeholders available.
 
 
 ## License
@@ -41,3 +49,4 @@ Please read [LICENSE][license].
 [release]: https://github.com/mitsuse/neocomplete-kitten/releases
 [github-sourcekitten]: https://github.com/jpsim/SourceKitten
 [github-neocomplete]: https://github.com/Shougo/neocomplete.vim
+[github-neosnippet]: https://github.com/Shougo/neosnippet.vim
