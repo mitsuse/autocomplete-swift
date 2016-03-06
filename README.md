@@ -5,7 +5,7 @@
 
 A neocomplete source of [SourceKitten][github-sourcekitten] for Swift.
 
-![kitten-gif](/kitten.gif)
+![kitten-gif](/_images/kitten.gif)
 
 ## Requirements
 
@@ -24,6 +24,13 @@ A neocomplete source of [SourceKitten][github-sourcekitten] for Swift.
 
 This plugin provides completion in single file.
 Frameworks/SDKs are not supported currently.
+
+
+## Placeholder
+
+This plugin supports for jumping to and editing placeholders ([neosnippet][github-neosnippet] is required).
+
+![placeholder-gif](/_images/placeholder.gif)
 
 
 ## TODO
