@@ -55,11 +55,7 @@ function! s:write_buffer()
 endfunction
 
 function! s:get_offset(context)
-    if line('.') == 1
-        return a:context.complete_pos
-    else
-        return len(join(getline(0, line('.') - 1), "\n") . "\n") + a:context.complete_pos
-    endif
+    return line2byte(line('.')) - 1 + a:context.complete_pos
 endfunction
 
 function! s:sourcekitten_complete(path, offset)
