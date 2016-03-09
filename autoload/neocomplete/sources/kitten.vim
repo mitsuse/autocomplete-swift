@@ -19,10 +19,9 @@ let s:source = {
 \ }
 
 function! s:source.gather_candidates(context)
-    let l:result = s:get_text_with_offset(a:context, line('.'))
     let l:sourcekit_candidates = s:sourcekitten_complete(
-    \   l:result.text,
-    \   l:result.offset,
+    \   s:write_buffer(),
+    \   s:get_offset(a:context),
     \)
 
     let l:candidates = []
@@ -41,25 +40,34 @@ function! neocomplete#sources#kitten#define()
     return executable('sourcekitten') ? s:source : {}
 endfunction
 
-function! s:quote(string)
-    return '"' . escape(a:string, '"') . '"'
+function! s:write_buffer()
+    if exists('s:path_buffer')
+        if !filewritable(s:path_buffer)
+            let s:path_buffer = tempname()
+        endif
+    else
+        let s:path_buffer = tempname()
+    endif
+
+    call writefile(getline(0, '.'), s:path_buffer)
+
+    return s:path_buffer
 endfunction
 
-function! s:get_text_with_offset(context, row)
-    let l:text = join(getline(0, a:row - 1), "\n") . "\n"
-    let l:result = {
-    \   'text': l:text . join(getline(a:row, '$'), "\n"),
-    \   'offset': len(l:text) + a:context.complete_pos,
-    \}
-    return l:result
+function! s:get_offset(context)
+    if line('.') == 1
+        return a:context.complete_pos
+    else
+        return len(join(getline(0, line('.') - 1), "\n") . "\n") + a:context.complete_pos
+    endif
 endfunction
 
-function! s:sourcekitten_complete(text, offset)
+function! s:sourcekitten_complete(path, offset)
     let l:command = 'sourcekitten complete'
 
     let l:args = join(
     \   [
-    \       '--text', s:quote(a:text),
+    \       '--file', a:path,
     \       '--offset', a:offset,
     \   ],
     \)
