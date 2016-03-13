@@ -3,7 +3,7 @@
 [![License][license-badge]][license]
 [![Release][release-badge]][release]
 
-A neocomplete source of [SourceKitten][github-sourcekitten] for Swift.
+Autocompletion for Swift in Vim with [neocomplete][github-neocomplete].
 
 ![kitten-gif](/_images/kitten.gif)
 
