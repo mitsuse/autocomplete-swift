@@ -1,15 +1,15 @@
-let s:Vital = vital#of('neocomplete_kitten')
+let s:Vital = vital#of('neocomplete_swift')
 
 let s:Process = s:Vital.import('Process')
 let s:Json = s:Vital.import('Web.JSON')
 
 let s:source = {
-\   'name': 'kitten',
+\   'name': 'swift',
 \   'kind': 'keyword',
 \   'filetypes': {
 \       'swift': 1,
 \   },
-\   'mark': '[kitten]',
+\   'mark': '[swift]',
 \   'min_pattern_length': 4,
 \   'max_candidates': 30,
 \   'keyword_patterns': {
@@ -19,6 +19,7 @@ let s:source = {
 \ }
 
 function! s:source.gather_candidates(context)
+    echomsg 'debug'
     let l:sourcekit_candidates = s:sourcekitten_complete(
     \   s:write_buffer(),
     \   s:get_offset(a:context),
@@ -36,7 +37,7 @@ function! s:source.gather_candidates(context)
     return l:candidates
 endfunction
 
-function! neocomplete#sources#kitten#define()
+function! neocomplete#sources#swift#define()
     return executable('sourcekitten') ? s:source : {}
 endfunction
 
