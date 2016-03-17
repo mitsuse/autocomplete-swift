@@ -19,7 +19,6 @@ let s:source = {
 \ }
 
 function! s:source.gather_candidates(context)
-    echomsg 'debug'
     let l:sourcekit_candidates = s:sourcekitten_complete(
     \   s:write_buffer(),
     \   s:get_offset(a:context),
