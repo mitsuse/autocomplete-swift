@@ -66,5 +66,5 @@ Please read [LICENSE][license].
 [github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
 [github-neocomplete]: https://github.com/Shougo/neocomplete.vim
 [github-neosnippet]: https://github.com/Shougo/neosnippet.vim
-[github-neosnippet-snippets]: https://github.com/Shougo/neosnippet-snippets.vim
+[github-neosnippet-snippets]: https://github.com/Shougo/neosnippet-snippets
 [web-neovim]: https://neovim.io/
