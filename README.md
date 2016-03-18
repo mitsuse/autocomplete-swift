@@ -48,6 +48,11 @@ This plugin supports jumping to and editing placeholders in arguments of method
 ([neosnippet][github-neosnippet] is required).
 
 
+## Snippets
+
+The GIF in the beginning also uses snippets for Swift contained in [neosnippet-snippets][github-neosnippet-snippets].
+
+
 ## TODO
 
 - Display more information of candidate (For example, the kind of candidate etc).
@@ -67,4 +72,5 @@ Please read [LICENSE][license].
 [github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
 [github-neocomplete]: https://github.com/Shougo/neocomplete.vim
 [github-neosnippet]: https://github.com/Shougo/neosnippet.vim
+[github-neosnippet-snippets]: https://github.com/Shougo/neosnippet-snippets.vim
 [web-neovim]: https://neovim.io/
