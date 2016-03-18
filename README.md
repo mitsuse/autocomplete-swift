@@ -17,16 +17,10 @@ Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplet
 
 ## Usage
 
-### Autocomplete with neocomplete (recommended)
+The comletion feature of autocomplete-swift is available in several ways:
 
-By combining [neocomplete][github-neocomplete] with this,
-autocompletion feature is enabled triggered by typing characters.
-
-
-### Omni completion
-
-Vim's omni completion is supported.
-Please type `<C-x><C-o>` in insert mode near `.`, `:`, `->` etc.
+- Autocompletion feature is enabled by combining with [neocomplete][github-neocomplete].
+- Complete by typing `<C-x><C-o>` near `.`, `:`, `->` etc via Vim's omni completion.
 
 
 ## Completion
