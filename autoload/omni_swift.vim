@@ -17,13 +17,13 @@ endfunction
 function! s:decide_position(input_text, cursor_pos)
     let l:complete_pos = match(
     \   a:input_text,
-    \   completion_swift#generate_input_pattern() . '$',
+    \   autocomplete_swift#generate_input_pattern() . '$',
     \)
 
     if l:complete_pos == -1
         let l:complete_pos = match(
         \   a:input_text,
-        \   completion_swift#generate_keyword_pattern() . '$',
+        \   autocomplete_swift#generate_keyword_pattern() . '$',
         \)
 
         if l:complete_pos != -1
@@ -39,11 +39,11 @@ function! s:complete(context)
         return []
     end
 
-    call completion_swift#write_buffer(s:get_temp_path())
+    call autocomplete_swift#write_buffer(s:get_temp_path())
 
     let l:sourcekit_candidates = sourcekitten#complete(
     \   s:get_temp_path(),
-    \   completion_swift#get_offset(a:context.complete_pos),
+    \   autocomplete_swift#get_offset(a:context.complete_pos),
     \)
 
     let l:candidates = []
@@ -54,7 +54,7 @@ function! s:complete(context)
 
         let l:c = {
         \   'kind': '[swift]',
-        \   'word': completion_swift#convert_placeholder(l:s.sourcetext),
+        \   'word': autocomplete_swift#convert_placeholder(l:s.sourcetext),
         \   'abbr': l:s.name,
         \}
         call add(candidates, l:c)

@@ -1,17 +1,31 @@
-# neocomplete-swift
+# autocomplete-swift
 
 [![License][license-badge]][license]
 [![Release][release-badge]][release]
 
-Autocompletion for Swift in Vim with [neocomplete][github-neocomplete].
+Autocompletion for Swift in Vim with [neocomplete][github-neocomplete]
 
 ![completion-gif](/_images/completion.gif)
 
+
 ## Requirements
 
-- [neocomplete][github-neocomplete]
-- [neosnippet][github-neosnippet]
 - [SourceKitten][github-sourcekitten]
+- [neosnippet][github-neosnippet]
+- [neocomplete][github-neocomplete] (recommended)
+
+
+## Usage
+
+### Autocomplete with neocomplete (recommended)
+
+By installing [neocomplete][github-neocomplete] and combining it with autocomplete-swift,
+autocompletion feature is enabled triggered by typing characters.
+
+
+### Omni completion
+
+Start completion by type `<C-x><C-o>` in insert mode near `.`, `:`, `->` etc.
 
 
 ## Completion
@@ -29,8 +43,6 @@ Frameworks/SDKs are not supported currently.
 ## Placeholder
 
 This plugin supports for jumping to and editing placeholders ([neosnippet][github-neosnippet] is required).
-
-![placeholder-gif](/_images/placeholder.gif)
 
 
 ## TODO

@@ -8,23 +8,23 @@ let s:source = {
 \   'min_pattern_length': 4,
 \   'max_candidates': 30,
 \   'keyword_patterns': {
-\       'swift': completion_swift#generate_keyword_pattern(),
+\       'swift': autocomplete_swift#generate_keyword_pattern(),
 \   },
-\   'input_pattern': completion_swift#generate_input_pattern(),
+\   'input_pattern': autocomplete_swift#generate_input_pattern(),
 \ }
 
 function! s:source.gather_candidates(context)
-    call completion_swift#write_buffer(s:get_temp_path())
+    call autocomplete_swift#write_buffer(s:get_temp_path())
 
     let l:sourcekit_candidates = sourcekitten#complete(
     \   s:get_temp_path(),
-    \   completion_swift#get_offset(a:context.complete_pos),
+    \   autocomplete_swift#get_offset(a:context.complete_pos),
     \)
 
     let l:candidates = []
     for l:s in l:sourcekit_candidates
         let l:c = {
-        \   'word': completion_swift#convert_placeholder(l:s.sourcetext),
+        \   'word': autocomplete_swift#convert_placeholder(l:s.sourcetext),
         \   'abbr': l:s.name,
         \}
         call add(candidates, l:c)

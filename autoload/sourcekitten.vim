@@ -1,4 +1,4 @@
-let s:Vital = vital#of('neocomplete_swift')
+let s:Vital = vital#of('autocomplete_swift')
 
 let s:Process = s:Vital.import('Process')
 let s:Json = s:Vital.import('Web.JSON')
