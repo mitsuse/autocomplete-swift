@@ -44,7 +44,7 @@ Frameworks/SDKs are not supported currently.
 
 ## Placeholder
 
-This plugin supports for jumping to and editing placeholders in arguments of method
+This plugin supports jumping to and editing placeholders in arguments of method
 ([neosnippet][github-neosnippet] is required).
 
 
