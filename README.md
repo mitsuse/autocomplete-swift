@@ -42,16 +42,16 @@ This plugin supports jumping to and editing placeholders in arguments of method
 ([neosnippet][github-neosnippet] is required).
 
 
-## Snippets
-
-The GIF in the beginning also uses snippets for Swift contained in [neosnippet-snippets][github-neosnippet-snippets].
-
-
 ## TODO
 
 - Display more information of candidate (For example, the kind of candidate etc).
 - Add support for framework/SDK by communicating with [SourceKittenDaemon][github-sourcekittendaemon].
 - Add support for [neovim][web-neovim].
+
+
+## Related project
+
+The GIF in the beginning also uses snippets for Swift contained in [neosnippet-snippets][github-neosnippet-snippets].
 
 
 ## License
