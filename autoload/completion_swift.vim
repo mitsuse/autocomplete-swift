@@ -22,3 +22,11 @@ function! completion_swift#convert_placeholder(text)
 
     return l:text
 endfunction
+
+function! completion_swift#write_buffer(path)
+    call writefile(getline(0, '.'), a:path)
+endfunction
+
+function! completion_swift#get_offset(complete_position)
+    return line2byte(line('.')) - 1 + a:complete_position
+endfunction
