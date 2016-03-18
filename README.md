@@ -51,7 +51,8 @@ This plugin supports for jumping to and editing placeholders in arguments of met
 ## TODO
 
 - Display more information of candidate (For example, the kind of candidate etc).
-- Add support for framework/SDK.
+- Add support for framework/SDK by communicating with [SourceKittenDaemon][github-sourcekittendaemon].
+- Add support for [neovim][web-neovim].
 
 
 ## License
@@ -63,5 +64,7 @@ Please read [LICENSE][license].
 [release-badge]: https://img.shields.io/github/tag/mitsuse/neocomplete-swift.svg?style=flat-square
 [release]: https://github.com/mitsuse/neocomplete-swift/releases
 [github-sourcekitten]: https://github.com/jpsim/SourceKitten
+[github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
 [github-neocomplete]: https://github.com/Shougo/neocomplete.vim
 [github-neosnippet]: https://github.com/Shougo/neosnippet.vim
+[web-neovim]: https://neovim.io/
