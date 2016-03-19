@@ -1,3 +1,7 @@
+let s:Vital = vital#of('autocomplete_swift')
+
+let s:String = s:Vital.import('Data.String')
+
 function! omni_swift#complete(first, base)
     if a:first
         let s:context = {}
@@ -35,18 +39,11 @@ function! s:complete(context)
     let l:candidates = []
 
     for l:c in autocomplete_swift#complete(line('.'), a:context.complete_pos)
-        if s:match_prefix(l:c.word, a:context.complete_str) == 0
+        if s:String.starts_with(l:c.word, a:context.complete_str) == 0
             continue
         end
         call add(l:candidates, l:c)
     endfor
 
     return l:candidates
-endfunction
-
-function! s:match_prefix(string, prefix)
-    if len(a:prefix) == 0
-        return 1
-    end
-    return a:string[0:len(a:prefix) - 1] ==# a:prefix
 endfunction
