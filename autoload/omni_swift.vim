@@ -31,10 +31,6 @@ function! s:decide_position(input_text, cursor_pos)
 endfunction
 
 function! s:complete(context)
-    if a:context.complete_pos == 0 && a:context.complete_str ==# ''
-        return []
-    end
-
     let l:candidates = []
 
     for l:c in autocomplete_swift#complete(line('.'), a:context.complete_pos)
