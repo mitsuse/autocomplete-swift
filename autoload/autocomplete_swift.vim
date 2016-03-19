@@ -48,11 +48,7 @@ function! s:write_buffer(path)
 endfunction
 
 function! s:get_temp_path()
-    if exists('s:path_buffer')
-        if !filewritable(s:path_buffer)
-            let s:path_buffer = tempname()
-        endif
-    else
+    if !exists('s:path_buffer') || !filewritable(s:path_buffer)
         let s:path_buffer = tempname()
     endif
     return s:path_buffer
