@@ -11,11 +11,10 @@ function! omni_swift#complete(first, base)
         \   col('.') - 1,
         \)
         return s:context.complete_pos
+    else
+        let s:context.complete_str = a:base
+        return s:complete(s:context)
     endif
-
-    let s:context.complete_str = a:base
-
-    return s:complete(s:context)
 endfunction
 
 function! s:decide_position(input_text, cursor_pos)
