@@ -7,11 +7,15 @@ let s:source = {
 \   'mark': '[swift]',
 \   'min_pattern_length': 4,
 \   'max_candidates': 30,
-\   'keyword_patterns': {
-\       'swift': autocomplete_swift#generate_keyword_pattern(),
-\   },
 \   'input_pattern': autocomplete_swift#generate_input_pattern(),
 \ }
+
+function! s:source.get_complete_position(context)
+    return autocomplete_swift#decide_completion_position(
+    \   a:context.input,
+    \   col('.') - 1,
+    \)
+endfunction
 
 function! s:source.gather_candidates(context)
     return autocomplete_swift#complete(line('.'), a:context.complete_pos)

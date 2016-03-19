@@ -18,6 +18,19 @@ function! autocomplete_swift#complete(line, column)
     return l:candidates
 endfunction
 
+function! autocomplete_swift#decide_completion_position(text, cursor)
+    let l:complete_position = match(
+    \   a:text,
+    \   autocomplete_swift#generate_keyword_pattern() . '$',
+    \)
+
+    if l:complete_position != -1
+        return l:complete_position
+    endif
+
+    return a:cursor
+endfunction
+
 function! autocomplete_swift#generate_keyword_pattern()
     return '\(\.\w*\|\h\w*\)'
 endfunction

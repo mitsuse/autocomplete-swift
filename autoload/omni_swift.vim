@@ -6,7 +6,7 @@ function! omni_swift#complete(first, base)
     if a:first
         let s:context = {}
         let s:context.input_text = getline('.')[0:col('.') - 1]
-        let s:context.complete_pos = s:decide_position(
+        let s:context.complete_pos = autocomplete_swift#decide_completion_position(
         \   s:context.input_text,
         \   col('.') - 1,
         \)
@@ -15,19 +15,6 @@ function! omni_swift#complete(first, base)
         let s:context.complete_str = a:base
         return s:complete(s:context)
     endif
-endfunction
-
-function! s:decide_position(input_text, cursor_pos)
-    let l:complete_pos = match(
-    \   a:input_text,
-    \   autocomplete_swift#generate_keyword_pattern() . '$',
-    \)
-
-    if l:complete_pos != -1
-        return l:complete_pos
-    endif
-
-    return a:cursor_pos
 endfunction
 
 function! s:complete(context)
