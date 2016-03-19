@@ -17,18 +17,11 @@ endfunction
 function! s:decide_position(input_text, cursor_pos)
     let l:complete_pos = match(
     \   a:input_text,
-    \   autocomplete_swift#generate_input_pattern() . '$',
+    \   autocomplete_swift#generate_keyword_pattern() . '$',
     \)
 
-    if l:complete_pos == -1
-        let l:complete_pos = match(
-        \   a:input_text,
-        \   autocomplete_swift#generate_keyword_pattern() . '$',
-        \)
-
-        if l:complete_pos != -1
-            return l:complete_pos
-        endif
+    if l:complete_pos != -1
+        return l:complete_pos
     endif
 
     return a:cursor_pos
