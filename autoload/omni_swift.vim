@@ -39,25 +39,13 @@ function! s:complete(context)
         return []
     end
 
-    call autocomplete_swift#write_buffer(s:get_temp_path())
-
-    let l:sourcekit_candidates = sourcekitten#complete(
-    \   s:get_temp_path(),
-    \   autocomplete_swift#get_offset(a:context.complete_pos),
-    \)
-
     let l:candidates = []
-    for l:s in l:sourcekit_candidates
-        if s:match_prefix(l:s.sourcetext, a:context.complete_str) == 0
+
+    for l:c in autocomplete_swift#complete(line('.'), a:context.complete_pos)
+        if s:match_prefix(l:c.word, a:context.complete_str) == 0
             continue
         end
-
-        let l:c = {
-        \   'kind': '[swift]',
-        \   'word': autocomplete_swift#convert_placeholder(l:s.sourcetext),
-        \   'abbr': l:s.name,
-        \}
-        call add(candidates, l:c)
+        call add(l:candidates, l:c)
     endfor
 
     return l:candidates
@@ -68,15 +56,4 @@ function! s:match_prefix(string, prefix)
         return 1
     end
     return a:string[0:len(a:prefix) - 1] ==# a:prefix
-endfunction
-
-function! s:get_temp_path()
-    if exists('s:path_buffer')
-        if !filewritable(s:path_buffer)
-            let s:path_buffer = tempname()
-        endif
-    else
-        let s:path_buffer = tempname()
-    endif
-    return s:path_buffer
 endfunction
