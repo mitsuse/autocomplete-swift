@@ -13,7 +13,7 @@ function! omni_swift#complete(first, base)
 endfunction
 
 function! s:get_context(text, column)
-    let l:text = a:text[0:a:column - 1]
+    let l:text = a:text[0:a:column - 2]
     let l:complete_pos = autocomplete_swift#decide_completion_position(
     \   l:text,
     \   a:column,
