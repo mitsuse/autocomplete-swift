@@ -1,9 +1,14 @@
 function! autocomplete_swift#complete(line, column)
     call s:write_buffer(s:get_temp_path())
 
+    let l:offset = s:get_offset(a:line, a:column)
+    if l:offset == -1
+        return []
+    endif
+
     let l:sourcekit_candidates = sourcekitten#complete(
     \   s:get_temp_path(),
-    \   s:get_offset(a:line, a:column),
+    \   l:offset,
     \)
 
     let l:candidates = []
@@ -68,5 +73,23 @@ function! s:get_temp_path()
 endfunction
 
 function! s:get_offset(line, column)
-    return line2byte(a:line) - 1 + a:column
+    if a:column < 0 && col('$') - 1 < a:column
+        return -1
+    endif
+
+    " line2byte returns -1 when invalid `lnum`.
+    " In a new buffer, line2byte(1) also returns -1 until the internal state of Vim is updated
+    " even if the first line exists, in other words, has some characters.
+    " Therefore, s:get_offset must discriminate these context.
+
+    if a:line < 1 && line('$') < a:line
+        return -1
+    endif
+
+    let l:bytes = line2byte(a:line) - 1
+    if l:bytes < 0
+        let l:bytes = 0
+    end
+
+    return l:bytes + a:column
 endfunction
