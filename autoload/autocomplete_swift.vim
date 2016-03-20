@@ -41,7 +41,7 @@ function! autocomplete_swift#generate_keyword_pattern()
 endfunction
 
 function! autocomplete_swift#generate_input_pattern()
-    return '\(\.\|\(,\|:\|->\)\s*\)\w*'
+    return '\(\.\|\(,\|:\|->\)\s\+\)\w*'
 endfunction
 
 function! autocomplete_swift#convert_placeholder(text)
