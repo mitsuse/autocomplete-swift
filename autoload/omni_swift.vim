@@ -16,7 +16,7 @@ function! s:get_context(text, column)
     let l:text = a:text[0:a:column - 1]
     let l:complete_pos = autocomplete_swift#decide_completion_position(
     \   l:text,
-    \   a:column - 1,
+    \   a:column,
     \)
 
     let l:context = {
@@ -30,7 +30,7 @@ endfunction
 function! s:complete(context)
     let l:candidates = []
 
-    for l:c in autocomplete_swift#complete(line('.'), a:context.complete_pos)
+    for l:c in autocomplete_swift#complete(line('.'), a:context.complete_pos + 1)
         if s:String.starts_with(l:c.word, a:context.complete_str) == 0
             continue
         end

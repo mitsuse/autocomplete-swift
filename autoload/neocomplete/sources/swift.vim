@@ -13,12 +13,12 @@ let s:source = {
 function! s:source.get_complete_position(context)
     return autocomplete_swift#decide_completion_position(
     \   a:context.input,
-    \   col('.') - 1,
+    \   col('.'),
     \)
 endfunction
 
 function! s:source.gather_candidates(context)
-    return autocomplete_swift#complete(line('.'), a:context.complete_pos)
+    return autocomplete_swift#complete(line('.'), a:context.complete_pos + 1)
 endfunction
 
 function! neocomplete#sources#swift#define()

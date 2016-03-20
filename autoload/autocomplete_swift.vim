@@ -23,7 +23,7 @@ function! autocomplete_swift#complete(line, column)
     return l:candidates
 endfunction
 
-function! autocomplete_swift#decide_completion_position(text, cursor)
+function! autocomplete_swift#decide_completion_position(text, column)
     let l:complete_position = match(
     \   a:text,
     \   autocomplete_swift#generate_keyword_pattern() . '$',
@@ -33,7 +33,7 @@ function! autocomplete_swift#decide_completion_position(text, cursor)
         return l:complete_position
     endif
 
-    return a:cursor
+    return a:column - 1
 endfunction
 
 function! autocomplete_swift#generate_keyword_pattern()
@@ -73,7 +73,7 @@ function! s:get_temp_path()
 endfunction
 
 function! s:get_offset(line, column)
-    if a:column < 0 && col('$') - 1 < a:column
+    if a:column < 1 && col('$') < a:column
         return -1
     endif
 
@@ -91,5 +91,6 @@ function! s:get_offset(line, column)
         let l:bytes = 0
     end
 
-    return l:bytes + a:column
+    " Subtract -1 from a:column because Vim's column starts with 1.
+    return l:bytes + a:column - 1
 endfunction
