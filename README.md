@@ -47,6 +47,7 @@ This plugin supports jumping to and editing placeholders in arguments of method
 - Display more information of candidate (For example, the kind of candidate etc).
 - Add support for framework/SDK by communicating with [SourceKittenDaemon][github-sourcekittendaemon].
 - Add support for [neovim][web-neovim].
+- Add support for placeholder without [neosnippet][github-neosnippet].
 
 
 ## Related project
