@@ -27,7 +27,7 @@ but I recommend to use with neocomplete to enable autocompletion.
 
 ## Usage
 
-The comletion feature of autocomplete-swift is available in several ways:
+The completion feature of autocomplete-swift is available in several ways:
 
 - Autocompletion feature is enabled by combining with [neocomplete][github-neocomplete].
 - Complete by typing `<C-x><C-o>` near `.`, `:`, `->` etc via Vim's omni completion.
