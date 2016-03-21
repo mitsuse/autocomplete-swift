@@ -68,16 +68,7 @@ Frameworks/SDKs are not supported currently.
 ### Placeholder
 
 This plugin supports jumping to placeholders in arguments of method.
-Please add the following code into `.vimrc`:
-
-```vim
-" Jump to the first placeholder by typing `<C-k>`.
-autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
-```
-
-If you use [neosnippet][github-neosnippet],
-you should enable [key-mappings of neosnippets][github-neosnippet-config] instead of using the above code.
-Autocomplete-swift gets along with neosnippet by converting placeholders into its ones.
+Please read [Installation](#installation).
 
 
 ## TODO
