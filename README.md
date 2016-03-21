@@ -10,11 +10,14 @@ Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplet
 
 ## Requirements
 
-Autocomplete-swift uses SourceKitten as its back-end.
+Autocomplete-swift uses [SourceKitten][github-sourcekitten] as its back-end.
 Therefore this plugin supports OS X only.
+SourceKitten can be installed with [Homebrew][github-homebrew].
+Please execute the following coomand:
 
-- Xcode 7.x
-- [SourceKitten][github-sourcekitten]
+```bash
+$ brew install sourcekitten
+```
 
 You can use autocomplete-swift via Vim's omni-completion,
 but I recommend to use with neocomplete to enable autocompletion.
@@ -91,6 +94,7 @@ Please read [LICENSE][license].
 [release]: https://github.com/mitsuse/neocomplete-swift/releases
 [github-sourcekitten]: https://github.com/jpsim/SourceKitten
 [github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
+[github-homebrew]: https://github.com/Homebrew/homebrew
 [github-neocomplete]: https://github.com/Shougo/neocomplete.vim
 [github-neosnippet]: https://github.com/Shougo/neosnippet.vim
 [github-neosnippet-config]: https://github.com/Shougo/neosnippet.vim#configuration
