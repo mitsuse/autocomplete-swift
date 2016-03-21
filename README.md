@@ -71,7 +71,9 @@ This plugin supports jumping to and editing placeholders in arguments of method
 
 ## Related project
 
-The GIF in the beginning also uses snippets for Swift contained in [neosnippet-snippets][github-neosnippet-snippets].
+In the GIF on the beginning,
+I use snippets for Swift contained in [neosnippet-snippets][github-neosnippet-snippets]
+in addition to autocomplete-swift.
 
 
 ## License
