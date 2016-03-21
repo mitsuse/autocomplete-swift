@@ -49,6 +49,7 @@ Autocomplete-swift supports types of completion as follow:
 - Type/Instance member
 - Function/method parameter
 - Top-level function/constant/variable
+- Keyword such as `protocol`, `extension etc.
 
 This plugin provides completion in single file.
 Frameworks/SDKs are not supported currently.
