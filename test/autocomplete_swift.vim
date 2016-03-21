@@ -9,8 +9,8 @@ function! s:suite.replaces_the_first_argument()
 endfunction
 
 function! s:suite.also_replaces_arguments_after_the_first()
-    let text = '.advancedBy(<#T##n: Self.Distance##Self.Distance#>, limit: <#T##Self#>)'
-    let expectation = '.advancedBy(<`' . '1:Self.Distance' . '`>, limit: <`' . '2:Self' .'`>)'
+    let text = 'Test().test(<#T##x: Int##Int#>, y: <#T##Float#>, z: <#T##String#>)'
+    let expectation = 'Test().test(<`' . '1:Int' . '`>, y: <`' . '2:Float' . '`>, z: <`' . '3:String' . '`>)'
     let result = autocomplete_swift#convert_placeholder_for_neosnippet(text)
     call s:assert.equals(result, expectation)
 endfunction
