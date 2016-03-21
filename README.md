@@ -44,23 +44,14 @@ you should enable [key-mappings of neosnippets][github-neosnippet-config] instea
 Autocomplete-swift gets along with neosnippet by converting placeholders into its ones.
 
 
-## Usage
+## Features
 
-The completion feature of autocomplete-swift is available in several ways.
+### Completion
 
-### Omni-completion
+The completion feature is available via several ways:
 
-Autocomplete-swift supports Vim's omni-completion.
-Completion is triggered by typing `<C-x><C-o>` near `.`, `:`, `->` etc.
-
-
-### neocomplete
-
-To enable *automatic* completion,
-autocomplete-swift requires [neocomplete][github-neocomplete].
-
-
-## Completion
+- Vim's omni-completion (typing `<C-x><C-o>` near `.`, `:`, `->` etc).
+- Autocompletion with [neocomplete][github-neocomplete].
 
 Autocomplete-swift supports types of completion as follow:
 
@@ -74,19 +65,10 @@ This plugin provides completion in single file.
 Frameworks/SDKs are not supported currently.
 
 
-## Placeholder
+### Placeholder
 
 This plugin supports jumping to placeholders in arguments of method.
-Please add the following code into `.vimrc`:
-
-```vim
-" Jump to the first placeholder by typing `<C-k>`.
-autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
-```
-
-If you use [neosnippet][github-neosnippet],
-you should enable [key-mappings of neosnippets][github-neosnippet-config] instead of using the above code.
-Autocomplete-swift gets along with neosnippet by converting placeholders into its ones.
+Please read [Installation](#installation).
 
 
 ## TODO
