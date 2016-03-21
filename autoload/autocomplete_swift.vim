@@ -77,7 +77,7 @@ function! s:get_offset(line, column)
         return -1
     endif
 
-    " line2byte returns -1 when invalid `lnum`.
+    " line2byte returns -1 when invalid `lnum` is passed.
     " In a new buffer, line2byte(1) also returns -1 until the internal state of Vim is updated
     " even if the first line exists, in other words, has some characters.
     " Therefore, s:get_offset must discriminate these context.
