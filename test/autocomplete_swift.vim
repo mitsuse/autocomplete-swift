@@ -4,14 +4,14 @@ let s:assert = themis#helper('assert')
 function! s:suite.replaces_the_first_argument()
     let text = '.advancedBy(<#T##n: Distance##Distance#>)'
     let expectation = '.advancedBy(<`' . '1:Distance' . '`>)'
-    let result = autocomplete_swift#convert_placeholder(text)
+    let result = autocomplete_swift#convert_placeholder_for_neosnippet(text)
     call s:assert.equals(result, expectation)
 endfunction
 
 function! s:suite.replaces_arguments_after_the_first()
     let text = '.advancedBy(<#T##n: Self.Distance##Self.Distance#>, limit: <#T##Self#>)'
     let expectation = '.advancedBy(<`' . '1:Self.Distance' . '`>, limit: <`' . '2:Self' .'`>)'
-    let result = autocomplete_swift#convert_placeholder(text)
+    let result = autocomplete_swift#convert_placeholder_for_neosnippet(text)
     call s:assert.equals(result, expectation)
 endfunction
 

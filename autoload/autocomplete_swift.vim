@@ -45,6 +45,14 @@ function! autocomplete_swift#generate_input_pattern()
 endfunction
 
 function! autocomplete_swift#convert_placeholder(text)
+    if s:check_neosnippet_existence()
+        return autocomplete_swift#convert_placeholder_for_neosnippet(a:text)
+    endif
+
+    return a:text
+endfunction
+
+function! autocomplete_swift#convert_placeholder_for_neosnippet(text)
     let l:text = a:text
     let l:pattern = '<#\%(T##\)\?\%(.\{-}##\)\?\(.\{-}\)#>'
     let l:count = 0
@@ -93,4 +101,8 @@ function! s:get_offset(line, column)
 
     " Subtract -1 from a:column because Vim's column starts with 1.
     return l:bytes + a:column - 1
+endfunction
+
+function! s:check_neosnippet_existence()
+    return exists('g:loaded_neosnippet') && g:loaded_neosnippet
 endfunction
