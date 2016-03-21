@@ -10,8 +10,18 @@ Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplet
 
 ## Requirements
 
+Autocomplete-swift uses SourceKitten as its back-end,
+and neosnippet to jump placeholders.
+SourceKitten is available in OS X,
+therefore this plugin supports OS X only.
+
+- Xcode 7.x
 - [SourceKitten][github-sourcekitten]
 - [neosnippet][github-neosnippet]
+
+You can use autocomplete-swift via Vim's omni-completion,
+but I recommend to use with neocomplete to enable autocompletion.
+
 - [neocomplete][github-neocomplete] (optional, but recommended)
 
 
