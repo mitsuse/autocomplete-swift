@@ -10,14 +10,12 @@ Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplet
 
 ## Requirements
 
-Autocomplete-swift uses SourceKitten as its back-end,
-and neosnippet to jump placeholders.
+Autocomplete-swift uses SourceKitten as its back-end.
 SourceKitten is available in OS X,
 therefore this plugin supports OS X only.
 
 - Xcode 7.x
 - [SourceKitten][github-sourcekitten]
-- [neosnippet][github-neosnippet]
 
 You can use autocomplete-swift via Vim's omni-completion,
 but I recommend to use with neocomplete to enable autocompletion.
@@ -57,8 +55,17 @@ Frameworks/SDKs are not supported currently.
 
 ## Placeholder
 
-This plugin supports jumping to and editing placeholders in arguments of method
-([neosnippet][github-neosnippet] is required).
+This plugin supports jumping to placeholders in arguments of method.
+Please add the following code into `.vimrc`:
+
+```vim
+" Jump to the first placeholder by typing `<C-k>`.
+autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
+```
+
+If you use [neosnippet][github-neosnippet],
+you should enable [key-mappings of neosnippets][github-neosnippet-config] instead of using the above code.
+Autocomplete-swift gets along with neosnippet by converting placeholders into its ones.
 
 
 ## TODO
@@ -66,7 +73,6 @@ This plugin supports jumping to and editing placeholders in arguments of method
 - Display more information of candidate (For example, the kind of candidate etc).
 - Add support for framework/SDK by communicating with [SourceKittenDaemon][github-sourcekittendaemon].
 - Add support for [neovim][web-neovim].
-- Add support for placeholder without [neosnippet][github-neosnippet].
 
 
 ## Related project
@@ -88,5 +94,6 @@ Please read [LICENSE][license].
 [github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
 [github-neocomplete]: https://github.com/Shougo/neocomplete.vim
 [github-neosnippet]: https://github.com/Shougo/neosnippet.vim
+[github-neosnippet-config]: https://github.com/Shougo/neosnippet.vim#configuration
 [github-neosnippet-snippets]: https://github.com/Shougo/neosnippet-snippets
 [web-neovim]: https://neovim.io/

@@ -44,9 +44,21 @@ function! autocomplete_swift#generate_input_pattern()
     return '\(\.\|\(,\|:\|->\)\s\+\)\w*'
 endfunction
 
+function! autocomplete_swift#generate_placeholder_pattern()
+    return '<#\%(T##\)\?\%(.\{-}##\)\?\(.\{-}\)#>'
+endfunction
+
 function! autocomplete_swift#convert_placeholder(text)
+    if s:check_neosnippet_existence()
+        return autocomplete_swift#convert_placeholder_for_neosnippet(a:text)
+    endif
+
+    return a:text
+endfunction
+
+function! autocomplete_swift#convert_placeholder_for_neosnippet(text)
     let l:text = a:text
-    let l:pattern = '<#\%(T##\)\?\%(.\{-}##\)\?\(.\{-}\)#>'
+    let l:pattern = autocomplete_swift#generate_placeholder_pattern()
     let l:count = 0
 
     while 1
@@ -59,6 +71,41 @@ function! autocomplete_swift#convert_placeholder(text)
     endwhile
 
     return l:text
+endfunction
+
+function! autocomplete_swift#jump_to_placeholder()
+    if &filetype !=# 'swift'
+        return ''
+    end
+
+    if !autocomplete_swift#check_placeholder_existence()
+        return ''
+    endif
+
+    return "\<ESC>:call autocomplete_swift#begin_replacing_placeholder()\<CR>"
+endfunction
+
+function! autocomplete_swift#check_placeholder_existence()
+    return search(autocomplete_swift#generate_placeholder_pattern())
+endfunction
+
+function! autocomplete_swift#begin_replacing_placeholder()
+    if mode() !=# 'n'
+        return
+    endif
+
+    let l:pattern = autocomplete_swift#generate_placeholder_pattern()
+
+    let [l:line, l:column] = searchpos(l:pattern)
+    if l:line == 0 && l:column == 0
+        return
+    end
+
+    execute printf(':%d s/%s//', l:line, l:pattern)
+
+    call cursor(l:line, l:column)
+
+    startinsert
 endfunction
 
 function! s:write_buffer(path)
@@ -93,4 +140,8 @@ function! s:get_offset(line, column)
 
     " Subtract -1 from a:column because Vim's column starts with 1.
     return l:bytes + a:column - 1
+endfunction
+
+function! s:check_neosnippet_existence()
+    return exists('g:loaded_neosnippet') && g:loaded_neosnippet
 endfunction
