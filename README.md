@@ -8,18 +8,40 @@ Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplet
 ![completion-gif](/_images/completion.gif)
 
 
-## Requirements
+## Installation
 
-Autocomplete-swift uses SourceKitten as its back-end.
+Autocomplete-swift uses [SourceKitten][github-sourcekitten] as its back-end.
 Therefore this plugin supports OS X only.
+SourceKitten can be installed with [Homebrew][github-homebrew].
+Please execute the following coomand:
 
-- Xcode 7.x
-- [SourceKitten][github-sourcekitten]
+```bash
+$ brew install sourcekitten
+```
 
+To install autocomplete-swift,
+it is recommended to use plugin managers for Vim such as [NeoBundle][github-neobundle].
 You can use autocomplete-swift via Vim's omni-completion,
-but I recommend to use with neocomplete to enable autocompletion.
+but I recommend to use with [neocomplete][github-neocomplete] to enable autocompletion.
 
-- [neocomplete][github-neocomplete] (optional, but recommended)
+In the case of NeoBundle, please add the following codes into `.vimrc`:
+
+```vim
+NeoBundle 'mitsuse/autocomplete-swift'
+NeoBundle 'Shougo/neocomplete.vim' " Optional, but recommended.
+```
+
+This plugin also supports jumping to placeholders in arguments of method.
+The following configuration is required:
+
+```vim
+" Jump to the first placeholder by typing `<C-k>`.
+autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
+```
+
+If you use [neosnippet][github-neosnippet],
+you should enable [key-mappings of neosnippets][github-neosnippet-config] instead of using the above code.
+Autocomplete-swift gets along with neosnippet by converting placeholders into its ones.
 
 
 ## Usage
@@ -91,6 +113,8 @@ Please read [LICENSE][license].
 [release]: https://github.com/mitsuse/neocomplete-swift/releases
 [github-sourcekitten]: https://github.com/jpsim/SourceKitten
 [github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
+[github-homebrew]: https://github.com/Homebrew/homebrew
+[github-neobundle]: https://github.com/Shougo/neobundle.vim
 [github-neocomplete]: https://github.com/Shougo/neocomplete.vim
 [github-neosnippet]: https://github.com/Shougo/neosnippet.vim
 [github-neosnippet-config]: https://github.com/Shougo/neosnippet.vim#configuration
