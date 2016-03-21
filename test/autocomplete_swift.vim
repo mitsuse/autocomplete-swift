@@ -8,7 +8,7 @@ function! s:suite.replaces_the_first_argument()
     call s:assert.equals(result, expectation)
 endfunction
 
-function! s:suite.replaces_arguments_after_the_first()
+function! s:suite.also_replaces_arguments_after_the_first()
     let text = '.advancedBy(<#T##n: Self.Distance##Self.Distance#>, limit: <#T##Self#>)'
     let expectation = '.advancedBy(<`' . '1:Self.Distance' . '`>, limit: <`' . '2:Self' .'`>)'
     let result = autocomplete_swift#convert_placeholder_for_neosnippet(text)
