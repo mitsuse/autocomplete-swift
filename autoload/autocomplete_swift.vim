@@ -45,7 +45,7 @@ function! autocomplete_swift#generate_input_pattern()
 endfunction
 
 function! autocomplete_swift#generate_placeholder_pattern()
-    return '<#\%(T##\)\?\%(.\{-}##\)\?\(.\{-}\)#>'
+    return '<#\%(T##\)\?\%([^#]\+##\)\?\([^#]\+\)#>'
 endfunction
 
 function! autocomplete_swift#convert_placeholder(text)
