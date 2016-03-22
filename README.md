@@ -76,6 +76,7 @@ Please read [Installation](#installation).
 - Display more information of candidate (For example, the kind of candidate etc).
 - Add support for framework/SDK by communicating with [SourceKittenDaemon][github-sourcekittendaemon].
 - Add support for [neovim][web-neovim].
+- Make configurable. For example, autocomplete-swift will get `max_candiates` for neocomplete from a variable.
 
 
 ## Related project
