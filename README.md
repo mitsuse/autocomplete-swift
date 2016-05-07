@@ -3,7 +3,7 @@
 [![License][license-badge]][license]
 [![Release][release-badge]][release]
 
-Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplete]/[deoplete][github-deoplete].
+Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplete] / [deoplete][github-deoplete].
 
 ![completion-gif](/_images/completion.gif)
 
@@ -118,4 +118,5 @@ Please read [LICENSE][license].
 [github-neosnippet-config]: https://github.com/Shougo/neosnippet.vim#configuration
 [github-neosnippet-snippets]: https://github.com/Shougo/neosnippet-snippets
 [github-deoplete]: https://github.com/Shougo/deoplete.nvim
+[github-dein]: https://github.com/Shougo/dein.vim
 [web-neovim]: https://neovim.io/
