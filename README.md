@@ -3,7 +3,7 @@
 [![License][license-badge]][license]
 [![Release][release-badge]][release]
 
-Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplete].
+Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplete] / [deoplete][github-deoplete].
 
 ![completion-gif](/_images/completion.gif)
 
@@ -13,6 +13,7 @@ Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplet
 Autocomplete-swift uses [SourceKitten][github-sourcekitten] as its back-end.
 Therefore this plugin supports OS X only.
 SourceKitten can be installed with [Homebrew][github-homebrew].
+
 Please execute the following coomand:
 
 ```bash
@@ -30,6 +31,8 @@ In the case of NeoBundle, please add the following codes into `.vimrc`:
 NeoBundle 'mitsuse/autocomplete-swift'
 NeoBundle 'Shougo/neocomplete.vim' " Optional, but recommended.
 ```
+
+For NeoVim, please see [NeoVim Support](#neovim-support).
 
 This plugin also supports jumping to placeholders in arguments of method.
 The following configuration is required:
@@ -71,11 +74,23 @@ This plugin supports jumping to placeholders in arguments of method.
 Please read [Installation](#installation).
 
 
+### NeoVim Support
+
+Now, autocomplete-swift supports NeoVim with [deoplete][github-deoplete] experimentally.
+
+In the case of [dein.vim][github-dein], please add the following codes into `init.vim` and configure them:
+
+```vim
+call dein#add('Shougo/deoplete.vim') " Required to use autocomplete-swift in NeoVim
+call dein#add('Shougo/neosnippet') " Required for jumping to placeholders.
+call dein#add('mitsuse/autocomplete-swift')
+```
+
+
 ## TODO
 
 - Display more information of candidate (For example, the kind of candidate etc).
 - Add support for framework/SDK by communicating with [SourceKittenDaemon][github-sourcekittendaemon].
-- Add support for [neovim][web-neovim].
 - Make configurable. For example, autocomplete-swift will get `max_candiates` for neocomplete from a variable.
 
 
@@ -102,4 +117,6 @@ Please read [LICENSE][license].
 [github-neosnippet]: https://github.com/Shougo/neosnippet.vim
 [github-neosnippet-config]: https://github.com/Shougo/neosnippet.vim#configuration
 [github-neosnippet-snippets]: https://github.com/Shougo/neosnippet-snippets
+[github-deoplete]: https://github.com/Shougo/deoplete.nvim
+[github-dein]: https://github.com/Shougo/dein.vim
 [web-neovim]: https://neovim.io/
