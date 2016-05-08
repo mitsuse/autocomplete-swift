@@ -1,15 +1,22 @@
 function! autocomplete_swift#complete(line, column)
-    call s:write_buffer(s:get_temp_path())
+    let l:path = s:write_buffer()
 
     let l:offset = s:get_offset(a:line, a:column)
     if l:offset == -1
         return []
     endif
 
-    let l:sourcekit_candidates = sourcekitten#complete(
-    \   s:get_temp_path(),
-    \   l:offset,
-    \)
+    if sourcekitten_daemon#is_enabled()
+        let l:sourcekit_candidates = sourcekitten_daemon#complete(
+        \   l:path,
+        \   l:offset,
+        \)
+    else
+        let l:sourcekit_candidates = sourcekitten#complete(
+        \   l:path,
+        \   l:offset,
+        \)
+    endif
 
     let l:candidates = []
     for l:s in l:sourcekit_candidates
@@ -108,8 +115,16 @@ function! autocomplete_swift#begin_replacing_placeholder()
     startinsert
 endfunction
 
-function! s:write_buffer(path)
-    call writefile(getline(0, '.'), a:path)
+function! s:write_buffer()
+    if sourcekitten_daemon#is_enabled() == 1
+        let l:path = expand('%:p')
+    else
+        let l:path = s:get_temp_path()
+    endif
+
+    call writefile(getline(0, '$'), l:path)
+
+    return l:path
 endfunction
 
 function! s:get_temp_path()
