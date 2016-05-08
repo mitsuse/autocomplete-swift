@@ -87,10 +87,17 @@ call dein#add('mitsuse/autocomplete-swift')
 ```
 
 
+### Xcode Project Support
+
+Autocomplete-swift experimentally supports completion with framework/SDK
+by communicating with [SourceKittenDaemon][github-sourcekittendaemon].
+
+After launching SourceKittenDaemon, execute `call sourcekitten_daemon#enable({port_number})`.
+
+
 ## TODO
 
 - Display more information of candidate (For example, the kind of candidate etc).
-- Add support for framework/SDK by communicating with [SourceKittenDaemon][github-sourcekittendaemon].
 - Make configurable. For example, autocomplete-swift will get `max_candiates` for neocomplete from a variable.
 
 
