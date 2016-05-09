@@ -118,11 +118,14 @@ endfunction
 function! s:write_buffer()
     if sourcekitten_daemon#is_enabled() == 1
         let l:path = expand('%:p')
+
+        if l:path != ""
+            write!
+        endif
     else
         let l:path = s:get_temp_path()
+        call writefile(getline(0, '$'), l:path)
     endif
-
-    call writefile(getline(0, '$'), l:path)
 
     return l:path
 endfunction
