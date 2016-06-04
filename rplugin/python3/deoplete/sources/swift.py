@@ -35,7 +35,6 @@ class Completer(object):
         import re
 
         self.__vim = vim
-        self.__source_kitten = SourceKitten()
         self.__completion_pattern = re.compile('\w*$')
         self.__placeholder_pattern = re.compile(
             '<#(?:T##)?(?:[^#]+##)?(?P<desc>[^#]+)#>'
@@ -48,7 +47,8 @@ class Completer(object):
         text = self.__vim.current.buffer[:]
         path, offset = self.__prepare_completion(text, line, column)
 
-        candidates_json = self.__source_kitten.complete(path, offset)
+        completer = self__decide_completer()
+        candidates_json = completer.complete(path, offset)
         os.remove(path)
 
         return [self.__convert_candidates(c) for c in candidates_json]
@@ -60,6 +60,14 @@ class Completer(object):
             return column - 1
 
         return result.start()
+
+    def __decide_completer(self):
+        port = int(self.__vim.call('sourcekitten#port'))
+
+        if port <= 0:
+            return SourceKitten()
+
+        return SourceKittenDaemon(port)
 
     def __prepare_completion(self, text, line, column):
         import tempfile
