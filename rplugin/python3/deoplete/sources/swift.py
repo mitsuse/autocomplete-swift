@@ -47,7 +47,7 @@ class Completer(object):
         text = self.__vim.current.buffer[:]
         path, offset = self.__prepare_completion(text, line, column)
 
-        completer = self__decide_completer()
+        completer = self.__decide_completer()
         candidates_json = completer.complete(path, offset)
         os.remove(path)
 
