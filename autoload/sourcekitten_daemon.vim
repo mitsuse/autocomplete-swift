@@ -42,7 +42,7 @@ function! sourcekitten_daemon#is_executable()
 endfunction
 
 function! sourcekitten_daemon#is_enabled()
-    return sourcekitten_daemon#port != -1
+    return sourcekitten_daemon#port() != -1
 endfunction
 
 function! sourcekitten_daemon#port()
