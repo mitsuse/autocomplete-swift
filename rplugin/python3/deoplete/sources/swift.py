@@ -62,7 +62,7 @@ class Completer(object):
         return result.start()
 
     def __decide_completer(self):
-        port = int(self.__vim.call('sourcekitten#port'))
+        port = int(self.__vim.call('sourcekitten_daemon#port'))
 
         if port <= 0:
             return SourceKitten()
