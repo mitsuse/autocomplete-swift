@@ -131,3 +131,24 @@ class SourceKitten(object):
         import shutil
 
         return shutil.which(self.__command) is not None
+
+
+class SourceKittenDaemon(object):
+    def __init__(self, port=8081):
+        self.__endpoint = 'http://localhost:{}/complete'.format(port)
+
+    def complete(self, path, offset):
+        from urllib import request
+
+        response = request.urlopen(
+            request.Request(
+                self.__endpoint,
+                method='GET',
+                headers={'X-Offset': offset, 'X-Path': path}
+            )
+        )
+
+        if response.status != 200:
+            return []
+
+        return json.loads(response.read().decode())
