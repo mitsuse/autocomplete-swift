@@ -146,6 +146,7 @@ class SourceKittenDaemon(object):
         self.__endpoint = 'http://localhost:{}/complete'.format(port)
 
     def complete(self, path, offset):
+        import json
         from urllib import request
 
         response = request.urlopen(
