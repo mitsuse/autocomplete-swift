@@ -95,6 +95,20 @@ by communicating with [SourceKittenDaemon][github-sourcekittendaemon].
 After launching SourceKittenDaemon, execute `call sourcekitten_daemon#enable({port_number})`.
 
 
+#### Xcode <= 7.3.1
+
+Please use the original [SourceKittenDaemon][github-sourcekittendaemon].
+
+
+#### Xcode 8.0+
+
+You can use [the forked version of SourceKittenDaemon][github-mitsuse/sourcekittendaemon] for Xcode 8.0 as a **workaround**.
+Please checkout `support-xcode8.0` branch.
+
+It can switch toolchains with `TOOLCHAINS` variable.
+For excample, set `com.apple.dt.toolchain.Swift_2_3` to the variable for Swift 2.3.
+
+
 ## TODO
 
 - Display more information of candidate (For example, the kind of candidate etc).
@@ -118,6 +132,7 @@ Please read [LICENSE][license].
 [release]: https://github.com/mitsuse/neocomplete-swift/releases
 [github-sourcekitten]: https://github.com/jpsim/SourceKitten
 [github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
+[github-mitsuse/sourcekittendaemon]: https://github.com/mitsuse/SourceKittenDaemon/tree/support-xcode8.0
 [github-homebrew]: https://github.com/Homebrew/homebrew
 [github-neobundle]: https://github.com/Shougo/neobundle.vim
 [github-neocomplete]: https://github.com/Shougo/neocomplete.vim
