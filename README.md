@@ -20,7 +20,7 @@ Autocomplete-swift uses [SourceKitten][github-sourcekitten] as its back-end.
 Therefore this plugin supports OS X only.
 SourceKitten can be installed with [Homebrew][github-homebrew].
 
-Please execute the following coomand:
+Please execute the following command:
 
 ```bash
 $ brew install sourcekitten
