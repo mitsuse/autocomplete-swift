@@ -94,6 +94,7 @@ For excample, set `com.apple.dt.toolchain.Swift_2_3` to the variable for Swift 2
 
 - Display more information of candidate (For example, the kind of candidate etc).
 - Make configurable. For example, autocomplete-swift will get `max_candiates` for neocomplete from a variable.
+- Add support for Linux.
 
 
 ## Related project
