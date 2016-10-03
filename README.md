@@ -11,7 +11,7 @@ Autocompletion for Swift in [NeoVim][web-neovim] with [deoplete][github-deoplete
 ## Announcement
 
 **Autocompletion-swift will drop support for Vim and completion with omni-function**.
-Please use this plugin in NeoVim with deoplete.vim.
+Please use this plugin in NeoVim with deoplete.nvim.
 
 
 ## Installation
@@ -31,7 +31,7 @@ it is recommended to use plugin manager such as [dein.vim][github-dein].
 In the case of dein.vim, please add the following codes into `init.vim` and configure them:
 
 ```vim
-call dein#add('Shougo/deoplete.vim')
+call dein#add('Shougo/deoplete.nvim')
 call dein#add('mitsuse/autocomplete-swift')
 ```
 
