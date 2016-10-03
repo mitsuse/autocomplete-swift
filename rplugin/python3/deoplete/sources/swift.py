@@ -90,9 +90,12 @@ class Completer(object):
 
         return (path, offset)
 
+    def __filter_newline(self, text):
+        return text.replace('\n', '')
+
     def __convert_candidates(self, json):
         return {
-            'word': self.__convert_placeholder(json['sourcetext']),
+            'word': self.__filter_newline(self.__convert_placeholder(json['sourcetext'])),
             'abbr': json['name']
         }
 
