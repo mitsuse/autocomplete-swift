@@ -17,7 +17,7 @@ Please use this plugin in NeoVim with deoplete.vim.
 ## Installation
 
 Autocomplete-swift uses [SourceKitten][github-sourcekitten] as its back-end.
-Therefore this plugin supports OS X only.
+Therefore this plugin supports macOS only.
 SourceKitten can be installed with [Homebrew][github-homebrew].
 
 Please execute the following command:
