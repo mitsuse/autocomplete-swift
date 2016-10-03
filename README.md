@@ -3,9 +3,15 @@
 [![License][license-badge]][license]
 [![Release][release-badge]][release]
 
-Autocompletion for Swift in Vim, especially with [neocomplete][github-neocomplete] / [deoplete][github-deoplete].
+Autocompletion for Swift in [NeoVim][web-neovim] with [deoplete][github-deoplete].
 
 ![completion-gif](/_images/completion.gif)
+
+
+## Announcement
+
+**Autocompletion-swift will drop support for Vim and completion with omni-function**.
+Please use this plugin in NeoVim with deoplete.vim.
 
 
 ## Installation
@@ -14,25 +20,20 @@ Autocomplete-swift uses [SourceKitten][github-sourcekitten] as its back-end.
 Therefore this plugin supports OS X only.
 SourceKitten can be installed with [Homebrew][github-homebrew].
 
-Please execute the following coomand:
+Please execute the following command:
 
 ```bash
 $ brew install sourcekitten
 ```
 
 To install autocomplete-swift,
-it is recommended to use plugin managers for Vim such as [NeoBundle][github-neobundle].
-You can use autocomplete-swift via Vim's omni-completion,
-but I recommend to use with [neocomplete][github-neocomplete] to enable autocompletion.
-
-In the case of NeoBundle, please add the following codes into `.vimrc`:
+it is recommended to use plugin manager such as [dein.vim][github-dein].
+In the case of dein.vim, please add the following codes into `init.vim` and configure them:
 
 ```vim
-NeoBundle 'mitsuse/autocomplete-swift'
-NeoBundle 'Shougo/neocomplete.vim' " Optional, but recommended.
+call dein#add('Shougo/deoplete.vim')
+call dein#add('mitsuse/autocomplete-swift')
 ```
-
-For NeoVim, please see [NeoVim Support](#neovim-support).
 
 This plugin also supports jumping to placeholders in arguments of method.
 The following configuration is required:
@@ -51,11 +52,6 @@ Autocomplete-swift gets along with neosnippet by converting placeholders into it
 
 ### Completion
 
-The completion feature is available via several ways:
-
-- Vim's omni-completion (typing `<C-x><C-o>` near `.`, `:`, `->` etc).
-- Autocompletion with [neocomplete][github-neocomplete].
-
 Autocomplete-swift supports types of completion as follow:
 
 - Type name
@@ -64,9 +60,6 @@ Autocomplete-swift supports types of completion as follow:
 - Top-level function/constant/variable
 - Keyword such as `protocol`, `extension` etc.
 
-This plugin provides completion in single file.
-Frameworks/SDKs are not supported currently.
-
 
 ### Placeholder
 
@@ -74,25 +67,13 @@ This plugin supports jumping to placeholders in arguments of method.
 Please read [Installation](#installation).
 
 
-### NeoVim Support
-
-Now, autocomplete-swift supports NeoVim with [deoplete][github-deoplete] experimentally.
-
-In the case of [dein.vim][github-dein], please add the following codes into `init.vim` and configure them:
-
-```vim
-call dein#add('Shougo/deoplete.vim') " Required to use autocomplete-swift in NeoVim
-call dein#add('Shougo/neosnippet') " Required for jumping to placeholders.
-call dein#add('mitsuse/autocomplete-swift')
-```
-
-
 ### Xcode Project Support
 
 Autocomplete-swift experimentally supports completion with framework/SDK
 by communicating with [SourceKittenDaemon][github-sourcekittendaemon].
 
-After launching SourceKittenDaemon, execute `call sourcekitten_daemon#enable({port_number})`.
+After launching SourceKittenDaemon,
+execute `call sourcekitten_daemon#enable({port_number})` in NeoVim.
 
 
 #### Xcode <= 7.3.1
@@ -134,8 +115,6 @@ Please read [LICENSE][license].
 [github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
 [github-mitsuse/sourcekittendaemon]: https://github.com/mitsuse/SourceKittenDaemon/tree/support-xcode8.0
 [github-homebrew]: https://github.com/Homebrew/homebrew
-[github-neobundle]: https://github.com/Shougo/neobundle.vim
-[github-neocomplete]: https://github.com/Shougo/neocomplete.vim
 [github-neosnippet]: https://github.com/Shougo/neosnippet.vim
 [github-neosnippet-config]: https://github.com/Shougo/neosnippet.vim#configuration
 [github-neosnippet-snippets]: https://github.com/Shougo/neosnippet-snippets
