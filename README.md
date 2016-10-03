@@ -115,7 +115,7 @@ Please read [LICENSE][license].
 [github-sourcekitten]: https://github.com/jpsim/SourceKitten
 [github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
 [github-mitsuse/sourcekittendaemon]: https://github.com/mitsuse/SourceKittenDaemon/tree/support-xcode8.0
-[github-homebrew]: https://github.com/Homebrew/homebrew
+[github-homebrew]: https://github.com/Homebrew/homebrew-core
 [github-neosnippet]: https://github.com/Shougo/neosnippet.vim
 [github-neosnippet-config]: https://github.com/Shougo/neosnippet.vim#configuration
 [github-neosnippet-snippets]: https://github.com/Shougo/neosnippet-snippets
