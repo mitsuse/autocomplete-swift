@@ -102,6 +102,12 @@ class Completer(object):
     def __convert_placeholder(self, text):
         variables = {'index': 0}
 
+        neosnippet_func = '*neosnippet#get_snippets_directory'
+        used_neosnippet = int(self.__vim.call('exists', neosnippet_func)) == 1
+
+        if not used_neosnippet:
+            return text
+
         def replacer(match):
             try:
                 description = match.group('desc')
