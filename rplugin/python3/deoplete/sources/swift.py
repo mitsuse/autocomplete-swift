@@ -13,7 +13,7 @@ class Source(Base):
         self.filetypes = ['swift']
         self.min_pattern_length = 4
         self.max_pattern_length = 30
-        self.input_pattern = '(?:\.|(?:,|:|->)\s+)\w*'
+        self.input_pattern = '((?:\.|(?:,|:|->)\s+)\w*|\()'
 
         self.__completer = Completer(vim)
 
