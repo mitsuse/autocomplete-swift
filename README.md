@@ -59,6 +59,7 @@ Autocomplete-swift supports types of completion as follow:
 - Function/method/initializer parameter
 - Top-level function/constant/variable
 - Keyword such as `protocol`, `extension` etc.
+- Method definition
 
 
 ### Placeholder
