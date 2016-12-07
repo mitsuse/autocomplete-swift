@@ -76,7 +76,7 @@ but the feature is removed because the completion server has fatal bugs.
 ## TODO
 
 - Display more information of candidate (For example, the kind of candidate etc).
-- Make configurable. For example, autocomplete-swift will get `max_candiates` for neocomplete from a variable.
+- Make configurable. For example, autocomplete-swift will get `max_candiates` for deoplete from a variable.
 - Add support for Linux.
 - Add support for framework/SDK with [Yata][github-yata], which is a completion server for Swift under development.
 
