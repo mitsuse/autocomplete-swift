@@ -1,3 +1,10 @@
+## v0.9.0
+
+- Add support for switching the version of Swift.
+- Drop experimental support for Xcode project because of the issue on completion server.
+- Drop support for Vim.
+
+
 ## v0.8.0
 
 - Support completion for whole parameters of initializer, method and function with `(`.
