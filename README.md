@@ -84,7 +84,7 @@ but the feature is removed because the completion server has fatal bugs.
 ## TODO
 
 - Display more information of candidate (For example, the kind of candidate etc).
-- Make configurable. For example, autocomplete-swift will get `max_candiates` for neocomplete from a variable.
+- Make configurable. For example, autocomplete-swift will get `max_candiates` for deoplete from a variable.
 - Add support for Linux.
 - Add support for framework/SDK with [Yata][github-yata], which is a completion server for Swift under development.
 
@@ -102,8 +102,8 @@ Please read [LICENSE][license].
 
 [license-badge]: https://img.shields.io/badge/license-MIT-yellowgreen.svg?style=flat-square
 [license]: LICENSE
-[release-badge]: https://img.shields.io/github/tag/mitsuse/neocomplete-swift.svg?style=flat-square
-[release]: https://github.com/mitsuse/neocomplete-swift/releases
+[release-badge]: https://img.shields.io/github/tag/mitsuse/autocomplete-swift.svg?style=flat-square
+[release]: https://github.com/mitsuse/autocomplete-swift/releases
 [github-sourcekitten]: https://github.com/jpsim/SourceKitten
 [github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
 [github-homebrew]: https://github.com/Homebrew/homebrew-core
