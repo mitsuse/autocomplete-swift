@@ -94,8 +94,8 @@ Please read [LICENSE][license].
 
 [license-badge]: https://img.shields.io/badge/license-MIT-yellowgreen.svg?style=flat-square
 [license]: LICENSE
-[release-badge]: https://img.shields.io/github/tag/mitsuse/neocomplete-swift.svg?style=flat-square
-[release]: https://github.com/mitsuse/neocomplete-swift/releases
+[release-badge]: https://img.shields.io/github/tag/mitsuse/autocomplete-swift.svg?style=flat-square
+[release]: https://github.com/mitsuse/autocomplete-swift/releases
 [github-sourcekitten]: https://github.com/jpsim/SourceKitten
 [github-sourcekittendaemon]: https://github.com/terhechte/SourceKittenDaemon
 [github-homebrew]: https://github.com/Homebrew/homebrew-core
