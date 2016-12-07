@@ -6,17 +6,10 @@ function! autocomplete_swift#complete(line, column)
         return []
     endif
 
-    if sourcekitten_daemon#is_enabled()
-        let l:sourcekit_candidates = sourcekitten_daemon#complete(
-        \   l:path,
-        \   l:offset,
-        \)
-    else
-        let l:sourcekit_candidates = sourcekitten#complete(
-        \   l:path,
-        \   l:offset,
-        \)
-    endif
+    let l:sourcekit_candidates = sourcekitten#complete(
+    \   l:path,
+    \   l:offset,
+    \)
 
     let l:candidates = []
     for l:s in l:sourcekit_candidates
