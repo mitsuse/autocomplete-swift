@@ -62,7 +62,11 @@ class Completer(object):
         return result.start()
 
     def __decide_completer(self):
-        return SourceKitten()
+        try:
+            toolchain = self.__vim.eval('autocomplete_swift#toolchain')
+        except:
+            toolchain = None
+        return SourceKitten(toolchain=toolchain)
 
     def __prepare_completion(self, text, line, column):
         import tempfile
@@ -116,8 +120,14 @@ class Completer(object):
 
 
 class SourceKitten(object):
-    def __init__(self, command='sourcekitten'):
+    def __init__(self, command='sourcekitten', toolchain=None):
+        import os
+
         self.__command = command
+        self.__environment = os.environ.copy()
+
+        if toolchain is not None:
+            self.__environment['TOOLCHAINS'] = toolchain
 
     def complete(self, path, offset):
         import subprocess
@@ -127,13 +137,18 @@ class SourceKitten(object):
             return []
 
         try:
-            request = [
-                self.__command,
-                'complete',
-                '--file', path,
-                '--offset', str(offset)
-            ]
-            return json.loads(subprocess.check_output(request).decode())
+            output, _ = subprocess.Popen(
+                [
+                    self.__command,
+                    'complete',
+                    '--file', path,
+                    '--offset', str(offset)
+                ],
+                stdout=subprocess.PIPE,
+                env=self.__environment
+            ).communicate()
+
+            return json.loads(output.decode())
 
         except subprocess.CalledProcessError:
             return []
