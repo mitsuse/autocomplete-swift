@@ -67,6 +67,14 @@ This plugin supports jumping to placeholders in arguments of method.
 Please read [Installation](#installation).
 
 
+### Custom Toolchain
+
+The custom toolchain is available for completion.
+For example, if you want to use Swift 2.3, 
+call `autocomplete_swift#use_toolchain('Swift_2_3')` or
+`autocomplete_swift#use_custom_toolchain('com.apple.dt.toolchain.Swift_2_3')`.
+
+
 ### Xcode Project Support
 
 The previous version supported completion with framework/SDK experimentally,
