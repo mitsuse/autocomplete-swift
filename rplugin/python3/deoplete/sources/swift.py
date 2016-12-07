@@ -62,12 +62,7 @@ class Completer(object):
         return result.start()
 
     def __decide_completer(self):
-        port = int(self.__vim.call('sourcekitten_daemon#port'))
-
-        if port <= 0:
-            return SourceKitten()
-
-        return SourceKittenDaemon(port)
+        return SourceKitten()
 
     def __prepare_completion(self, text, line, column):
         import tempfile
@@ -148,25 +143,3 @@ class SourceKitten(object):
         import shutil
 
         return shutil.which(self.__command) is not None
-
-
-class SourceKittenDaemon(object):
-    def __init__(self, port=8081):
-        self.__endpoint = 'http://localhost:{}/complete'.format(port)
-
-    def complete(self, path, offset):
-        import json
-        from urllib import request
-
-        response = request.urlopen(
-            request.Request(
-                self.__endpoint,
-                method='GET',
-                headers={'X-Offset': offset, 'X-Path': path}
-            )
-        )
-
-        if response.status != 200:
-            return []
-
-        return json.loads(response.read().decode())
