@@ -10,8 +10,8 @@ Autocompletion for Swift in [NeoVim][web-neovim] with [deoplete][github-deoplete
 
 ## Announcement
 
-**Autocompletion-swift will drop support for Vim and completion with omni-function**.
-Please use this plugin in NeoVim with deoplete.nvim.
+Autocompletion-swift **droped support for Vim** and completion with omni-function.
+Please **use this plugin in NeoVim** with deoplete.nvim.
 
 ## Installation
 
