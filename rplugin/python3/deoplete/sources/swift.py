@@ -66,7 +66,13 @@ class Completer(object):
             toolchain = self.__vim.eval('autocomplete_swift#toolchain')
         except:
             toolchain = None
-        return SourceKitten(toolchain=toolchain)
+
+        try:
+            command = self.__vim.eval('autocomplete_swift#sourcekitten_command')
+        except:
+            command = 'sourcekitten'
+
+        return SourceKitten(command=command, toolchain=toolchain)
 
     def __prepare_completion(self, text, line, column):
         import tempfile
@@ -137,14 +143,17 @@ class SourceKitten(object):
             return []
 
         try:
+            command = [
+                self.__command,
+                'complete',
+                '--file', path,
+                '--offset', str(offset)
+            ]
+
             output, _ = subprocess.Popen(
-                [
-                    self.__command,
-                    'complete',
-                    '--file', path,
-                    '--offset', str(offset)
-                ],
+                command,
                 stdout=subprocess.PIPE,
+                cwd=find_project_root(""),
                 env=self.__environment
             ).communicate()
 
@@ -158,3 +167,13 @@ class SourceKitten(object):
         import shutil
 
         return shutil.which(self.__command) is not None
+
+
+def find_project_root(path):
+    # TODO
+    return None
+
+
+def _module_name(path):
+    # TODO
+    return None
