@@ -101,7 +101,7 @@ class Completer(object):
     def __convert_candidates(self, json):
         return {
             'word': self.__filter_newline(self.__convert_placeholder(json['sourcetext'])),
-            'abbr': json['name']
+            'abbr': json['descriptionKey']
         }
 
     def __convert_placeholder(self, text):
