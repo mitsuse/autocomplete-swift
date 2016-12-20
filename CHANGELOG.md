@@ -1,3 +1,10 @@
+## v0.10.0
+
+- Improve presentation of candidates:
+    - Use `descriptionKey` for the abbreviation of candidate to present the signature of function.
+    - Present the kind of candidate.
+
+
 ## v0.9.0
 
 - Add support for switching the version of Swift.
