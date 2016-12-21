@@ -1,3 +1,8 @@
+## v0.11.0
+
+- Add support for completion on SPM-based project.
+
+
 ## v0.10.0
 
 - Improve presentation of candidates:
