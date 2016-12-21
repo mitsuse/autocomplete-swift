@@ -41,14 +41,12 @@ class Completer(object):
         )
 
     def complete(self, line, column):
-        import os
         from deoplete import util
 
-        path, offset = self.__prepare_completion(line, column)
+        content, offset = self.__prepare_completion(line, column)
 
         completer = self.__decide_completer()
-        candidates_json = completer.complete(path, offset)
-        os.remove(path)
+        candidates_json = completer.complete(content, offset)
 
         return [self.__convert_candidates(c) for c in candidates_json]
 
@@ -73,27 +71,19 @@ class Completer(object):
 
         return SourceKitten(command=command, toolchain=toolchain)
 
-    def __prepare_completion(self, line, column):
-        import tempfile
-
-        text = self.__vim.current.buffer[:]
+    def __prepare_completion(self, row, column):
+        text_list = self.__vim.current.buffer[:]
         encoding = self.__vim.options['encoding']
 
+        content = '\n'.join(text_list) 
+
         offset = 0
-        path = tempfile.mktemp()
+        for row_current, text in enumerate(text_list):
+            if row_current < row - 1:
+                offset += len(bytes(text, encoding)) + 1
+        offset += column - 1
 
-        with open(path, mode='w') as f:
-            for index, s in enumerate(text):
-                l = s + '\n'
-
-                if index < line - 1:
-                    offset += len(bytes(l, encoding))
-
-                f.write(l)
-
-            offset += column - 1
-
-        return (path, offset)
+        return (content, offset)
 
     def __filter_newline(self, text):
         return text.replace('\n', '')
@@ -136,7 +126,7 @@ class SourceKitten(object):
         if toolchain is not None:
             self.__environment['TOOLCHAINS'] = toolchain
 
-    def complete(self, path, offset):
+    def complete(self, content, offset):
         import subprocess
         import json
 
@@ -147,7 +137,7 @@ class SourceKitten(object):
             command = [
                 self.__command,
                 'complete',
-                '--file', path,
+                '--text', content,
                 '--offset', str(offset)
             ]
 
