@@ -44,8 +44,7 @@ class Completer(object):
         import os
         from deoplete import util
 
-        text = self.__vim.current.buffer[:]
-        path, offset = self.__prepare_completion(text, line, column)
+        path, offset = self.__prepare_completion(line, column)
 
         completer = self.__decide_completer()
         candidates_json = completer.complete(path, offset)
@@ -74,9 +73,10 @@ class Completer(object):
 
         return SourceKitten(command=command, toolchain=toolchain)
 
-    def __prepare_completion(self, text, line, column):
+    def __prepare_completion(self, line, column):
         import tempfile
 
+        text = self.__vim.current.buffer[:]
         encoding = self.__vim.options['encoding']
 
         offset = 0
