@@ -10,19 +10,22 @@ Autocompletion for Swift in [NeoVim][web-neovim] with [deoplete][github-deoplete
 
 ## Announcement
 
-Autocompletion-swift **droped support for Vim** and completion with omni-function.
+- The support for **completion on SPM-based project** is added.
+- Autocompletion-swift **droped support for Vim** and completion with omni-function.
 Please **use this plugin in NeoVim** with deoplete.nvim.
+
 
 ## Installation
 
 Autocomplete-swift uses [SourceKitten][github-sourcekitten] as its back-end.
-Therefore this plugin supports macOS only.
 SourceKitten can be installed with [Homebrew][github-homebrew].
+This plugin also requires [PyYaml][web-pyyaml].
 
-Please execute the following command:
+Please execute the following commands:
 
 ```bash
 $ brew install sourcekitten
+$ pip install pyyaml
 ```
 
 To install autocomplete-swift,
@@ -75,6 +78,12 @@ call `autocomplete_swift#use_toolchain('Swift_2_3')` or
 `autocomplete_swift#use_custom_toolchain('com.apple.dt.toolchain.Swift_2_3')`.
 
 
+### Support for Swift Package Manager (SPM)
+
+When you are editing a file managed with SPM, autocomplete-swift enables SPM-based completion.
+It means that you can obtain candidates which come from dependencies (other files or libraries).
+
+
 ### Xcode Project Support
 
 The previous version supported completion with framework/SDK experimentally,
@@ -85,7 +94,6 @@ but the feature is removed because the completion server has fatal bugs.
 
 - Display more information of candidate (For example, the kind of candidate etc).
 - Make configurable. For example, autocomplete-swift will get `max_candiates` for deoplete from a variable.
-- Add support for Linux.
 - Add support for framework/SDK with [Yata][github-yata], which is a completion server for Swift under development.
 
 
@@ -114,3 +122,4 @@ Please read [LICENSE][license].
 [github-dein]: https://github.com/Shougo/dein.vim
 [github-yata]: https://github.com/mitsuse/yata
 [web-neovim]: https://neovim.io/
+[web-pyyaml]: http://pyyaml.org/
