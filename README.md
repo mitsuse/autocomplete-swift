@@ -18,7 +18,6 @@ Please **use this plugin in NeoVim** with deoplete.nvim.
 ## Installation
 
 Autocomplete-swift uses [SourceKitten][github-sourcekitten] as its back-end.
-Therefore this plugin supports macOS only.
 SourceKitten can be installed with [Homebrew][github-homebrew].
 This plugin also requires [PyYaml][web-pyyaml].
 
@@ -95,7 +94,6 @@ but the feature is removed because the completion server has fatal bugs.
 
 - Display more information of candidate (For example, the kind of candidate etc).
 - Make configurable. For example, autocomplete-swift will get `max_candiates` for deoplete from a variable.
-- Add support for Linux.
 - Add support for framework/SDK with [Yata][github-yata], which is a completion server for Swift under development.
 
 
