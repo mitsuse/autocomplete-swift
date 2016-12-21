@@ -41,10 +41,10 @@ class Completer(object):
         )
 
     def complete(self, line, column):
-        content, offset = self.__prepare_completion(line, column)
+        path, content, offset = self.__prepare_completion(line, column)
 
         completer = self.__decide_completer()
-        candidates_json = completer.complete(content, offset)
+        candidates_json = completer.complete(path, content, offset)
 
         return [self.__convert_candidates(c) for c in candidates_json]
 
@@ -72,8 +72,11 @@ class Completer(object):
     def __prepare_completion(self, row, column):
         text_list = self.__vim.current.buffer[:]
         encoding = self.__vim.options['encoding']
+        path = self.__vim.call('expand', '%:p')
+        if len(path) == 0:
+            path = None
 
-        content = '\n'.join(text_list) 
+        content = '\n'.join(text_list)
 
         offset = 0
         for row_current, text in enumerate(text_list):
@@ -81,7 +84,7 @@ class Completer(object):
                 offset += len(bytes(text, encoding)) + 1
         offset += column - 1
 
-        return (content, offset)
+        return (path, content, offset)
 
     def __filter_newline(self, text):
         return text.replace('\n', '')
@@ -124,20 +127,31 @@ class SourceKitten(object):
         if toolchain is not None:
             self.__environment['TOOLCHAINS'] = toolchain
 
-    def complete(self, content, offset):
+    def complete(self, path, content, offset):
+        import os
         import subprocess
+        import tempfile
         import json
 
         if not self.is_executable:
             return []
 
+        temporary_path = tempfile.mktemp()
+        try:
+            with open(temporary_path, 'w') as f:
+                f.write(content)
+        except:
+            return []
+
+        arguments = SourceKitten.generate_arguments(path, temporary_path)
+
         try:
             command = [
                 self.__command,
                 'complete',
-                '--text', content,
+                '--file', temporary_path,
                 '--offset', str(offset)
-            ]
+            ] + arguments
 
             output, _ = subprocess.Popen(
                 command,
@@ -145,9 +159,13 @@ class SourceKitten(object):
                 env=self.__environment
             ).communicate()
 
+            os.remove(temporary_path)
+
             return json.loads(output.decode())
 
         except subprocess.CalledProcessError:
+            os.remove(temporary_path)
+
             return []
 
     @property
@@ -155,3 +173,122 @@ class SourceKitten(object):
         import shutil
 
         return shutil.which(self.__command) is not None
+
+    @staticmethod
+    def generate_arguments(path, temporary_path):
+        import os
+
+        if path is None:
+            return []
+        absolute_path = os.path.abspath(path)
+
+        project = Project.find_from_source(absolute_path)
+        if project is None:
+            return []
+
+        module = project.find_module(absolute_path)
+        if module is None:
+            return []
+
+        arguments = \
+            ['--', temporary_path] + \
+            list(filter(lambda x: x != absolute_path, module.sources)) + \
+            ['-module-name', module.name] + \
+            module.other_arguments + \
+            ['-I'] + \
+            list(module.imports)
+
+        return arguments
+
+
+class Project(object):
+    def __init__(self, path, modules):
+        import os
+
+        self.path = path
+        self.modules = modules
+
+    @staticmethod
+    def load(path):
+        import os
+
+        with open(os.path.join(path, '.build', 'debug.yaml')) as f:
+            modules = Module.load(f)
+
+        return Project(path, modules)
+
+    def find_module(self, source_path):
+        import os
+
+        absolute_path = os.path.abspath(source_path)
+
+        for module in self.modules:
+            if absolute_path in module.sources:
+                return module
+
+        return None
+
+    @staticmethod
+    def find_from_source(path):
+        root = Project.find_root_from_source(path)
+        if root is None:
+            return None
+
+        try:
+            return Project.load(root)
+        except:
+            return None
+
+    @staticmethod
+    def find_root_from_source(path):
+        import os
+
+        previous_path = path
+        while True:
+            current_path = os.path.dirname(os.path.abspath(previous_path))
+            if current_path == previous_path:
+                break
+
+            description_path = os.path.join(current_path, 'Package.swift')
+            if os.path.isfile(description_path):
+                return current_path
+
+            previous_path = current_path
+
+        return None
+
+
+class Module(object):
+    def __init__(self, name, sources, imports, other_arguments):
+        self.name = name
+        self.sources = sources
+        self.imports = imports
+        self.other_arguments = other_arguments
+
+    @staticmethod
+    def load(f):
+        import yaml
+
+        obj = yaml.load(f)
+
+        def convert_to_log(obj):
+            name = obj.get('module-name')
+            if name is None:
+                return None
+
+            return Module(
+                name,
+                set(obj.get('sources', [])),
+                set(obj.get('import-paths', [])),
+                obj.get('other-args', [])
+            )
+
+        generator = filter(
+            lambda x: x is not None,
+            map(
+                lambda x: convert_to_log(x),
+                obj.get('commands', {}).values()
+            )
+        )
+
+        return list(generator)
