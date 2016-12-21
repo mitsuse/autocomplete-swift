@@ -41,8 +41,6 @@ class Completer(object):
         )
 
     def complete(self, line, column):
-        from deoplete import util
-
         content, offset = self.__prepare_completion(line, column)
 
         completer = self.__decide_completer()
