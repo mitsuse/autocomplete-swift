@@ -1,3 +1,8 @@
+## v0.11.1
+
+- Recover from degrading on handling placeholders.
+
+
 ## v0.11.0
 
 - Add support for completion on SPM-based project.
