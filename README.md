@@ -49,6 +49,15 @@ If you use [neosnippet][github-neosnippet],
 you should enable [key-mappings of neosnippets][github-neosnippet-config] instead of using the above code.
 Autocomplete-swift gets along with neosnippet by converting placeholders into its ones.
 
+### `swift` filetype
+
+If your vim setup doesn't set `*.swift` file's `filetype` to `swift`
+you need to put this line in your config:
+
+```
+autocmd BufNewFile,BufRead *.swift set filetype=swift
+```
+
 
 ## Features
 
