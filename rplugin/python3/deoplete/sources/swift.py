@@ -3,6 +3,9 @@
 
 from .base import Base
 
+_KIND_PREFIX_FUNCTION = 'source.lang.swift.decl.function'
+_KIND_PREFIX_VAR = 'source.lang.swift.decl.var'
+
 
 class Source(Base):
     def __init__(self, vim):
@@ -89,10 +92,19 @@ class Completer(object):
     def __filter_newline(self, text):
         return text.replace('\n', '')
 
+    def __extract_abbreviation(self, json):
+        kind = json['kind']
+        if kind.startswith(_KIND_PREFIX_FUNCTION):
+            return '{} -> {}'.format(json['descriptionKey'], json['typeName'])
+        elif kind.startswith(_KIND_PREFIX_VAR):
+            return '{}: {}'.format(json['descriptionKey'], json['typeName'])
+        else:
+            return json['descriptionKey']
+
     def __convert_candidates(self, json):
         return {
             'word': self.__filter_newline(self.__convert_placeholder(json['sourcetext'])),
-            'abbr': json['descriptionKey'],
+            'abbr': self.__extract_abbreviation(json),
             'kind': json['kind'].split('.')[-1]
         }
 
