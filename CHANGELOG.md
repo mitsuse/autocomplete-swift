@@ -1,3 +1,8 @@
+## v0.12.0
+
+- Present the return type of function, method and variable on the completion window.
+
+
 ## v0.11.1
 
 - Recover from degrading on handling placeholders.
