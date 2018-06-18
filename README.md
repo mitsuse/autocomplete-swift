@@ -82,9 +82,9 @@ Please read [Installation](#installation).
 ### Custom Toolchain
 
 The custom toolchain is available for completion.
-For example, if you want to use Swift 2.3, 
-call `autocomplete_swift#use_toolchain('Swift_2_3')` or
-`autocomplete_swift#use_custom_toolchain('com.apple.dt.toolchain.Swift_2_3')`.
+For example, if you want to use Swift 4.2,
+call `autocomplete_swift#use_toolchain('Swift_4_2')` or
+`autocomplete_swift#use_custom_toolchain('com.apple.dt.toolchain.Swift_4_2')`.
 
 
 ### Support for Swift Package Manager (SPM)
